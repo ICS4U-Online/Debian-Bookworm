@@ -1,7 +1,5 @@
 FROM debian:12-slim
 
-USER root
-
 # Use apt-get to install wget
 # System
 RUN apt-get update && \
