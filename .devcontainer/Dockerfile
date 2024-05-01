@@ -1,14 +1,17 @@
 FROM debian:12-slim
 
-# Use apt-get to install wget 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install git -y
-RUN apt-get install openssh-server -y 
-RUN apt-get install sudo locales -y
-RUN apt-get install sudo -y
-RUN apt-get clean
+USER root
 
-RUN useradd -rm -d /home/student -s /bin/bash -g root -G sudo -u 1001 --disabled-password --gecos '' student
+# Use apt-get to install wget
+# System
+RUN apt-get update && \
+    apt-get install -y \
+        openssh-server \
+        sudo \
+        git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN useradd -rm -d /home/student -s /bin/bash -g root -G sudo -u 1001 student
 USER student
 WORKDIR /home/student
