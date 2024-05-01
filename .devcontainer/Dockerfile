@@ -1,7 +1,6 @@
 FROM debian:12-slim
 
-# Use apt-get to install wget
-# System
+# Use apt-get
 RUN apt-get update && \
     apt-get install -y \
         openssh-server \
